@@ -15,3 +15,18 @@ from typing import List
 class Solution:
     def getMaximumXor(self, nums: List[int], maximumBit: int) -> List[int]:
         """
+        Solving approach:
+        1. Calculate the maximum XOR value for the current list
+        2. Loop through the list and remove the last element
+        3. Calculate the maximum XOR value for the new list
+        4. Append the maximum XOR value to the result list
+        5. Return the result list
+        """
+        result = []
+        xor = 0
+        for num in nums:
+            xor ^= num
+        for i in range(len(nums) - 1, -1, -1):
+            result.append(xor ^ (2 ** maximumBit - 1))
+            xor ^= nums[i]
+        return result
