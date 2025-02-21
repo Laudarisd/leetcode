@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 import os
+<<<<<<< HEAD
+=======
+import sys
+>>>>>>> f052deb9a3b640c90e2bb1e657dd85a65d936eb6
 import random
 import subprocess
 from datetime import datetime
 
+<<<<<<< HEAD
 # script_dir = os.path.dirname(os.path.abspath(__file__))
 # os.chdir(script_dir)
 script_dir = "/Users/slau8405/Desktop/work_space/work_space/leetcode"
@@ -13,11 +18,38 @@ os.chdir(script_dir)
 
 def read_number():
     with open("number.txt", "r") as f:
+=======
+# Force the script to always run from the correct repo
+script_dir = r"D:\workspace\personal\auto_git_push\leetcode"
+os.chdir(script_dir)
+
+# Debugging
+print(f"Script directory forced to: {script_dir}")
+print(f"After changing, Current working directory: {os.getcwd()}")
+
+# Debugging: Print the directories
+print(f"Script directory: {script_dir}")
+print(f"Before changing, Current working directory: {os.getcwd()}")
+
+# Change to the script directory
+os.chdir(script_dir)
+
+# Debugging: Verify the directory change
+print(f"After changing, Current working directory: {os.getcwd()}")
+
+
+def read_number():
+    with open(os.path.join(script_dir, "number.txt"), "r") as f:
+>>>>>>> f052deb9a3b640c90e2bb1e657dd85a65d936eb6
         return int(f.read().strip())
 
 
 def write_number(num):
+<<<<<<< HEAD
     with open("number.txt", "w") as f:
+=======
+    with open(os.path.join(script_dir, "number.txt"), "w") as f:
+>>>>>>> f052deb9a3b640c90e2bb1e657dd85a65d936eb6
         f.write(str(num))
 
 
@@ -43,9 +75,15 @@ def generate_random_commit_message():
         prompt,
         max_new_tokens=50,
         num_return_sequences=1,
+<<<<<<< HEAD
         temperature=0.9,  # Slightly higher for creativity
         top_k=50,  # Limits sampling to top 50 logits
         top_p=0.9,  # Nucleus sampling for diversity
+=======
+        temperature=0.9,
+        top_k=50,
+        top_p=0.9,
+>>>>>>> f052deb9a3b640c90e2bb1e657dd85a65d936eb6
         truncation=True,
     )
     text = generated[0]["generated_text"]
@@ -57,19 +95,32 @@ def generate_random_commit_message():
 
 
 def git_commit():
+<<<<<<< HEAD
     # Stage the changes
     subprocess.run(["git", "add", "number.txt"])
     # Create commit with current date
+=======
+    subprocess.run(["git", "add", os.path.join(script_dir, "number.txt")], check=True)
+
+>>>>>>> f052deb9a3b640c90e2bb1e657dd85a65d936eb6
     if "FANCY_JOB_USE_LLM" in os.environ:
         commit_message = generate_random_commit_message()
     else:
         date = datetime.now().strftime("%Y-%m-%d")
         commit_message = f"Update number: {date}"
+<<<<<<< HEAD
     subprocess.run(["git", "commit", "-m", commit_message])
 
 
 def git_push():
     # Push the committed changes to GitHub
+=======
+
+    subprocess.run(["git", "commit", "-m", commit_message], check=True)
+
+
+def git_push():
+>>>>>>> f052deb9a3b640c90e2bb1e657dd85a65d936eb6
     result = subprocess.run(["git", "push"], capture_output=True, text=True)
     if result.returncode == 0:
         print("Changes pushed to GitHub successfully.")
@@ -79,6 +130,7 @@ def git_push():
 
 
 def update_cron_with_random_time():
+<<<<<<< HEAD
     # Generate random hour (0-23) and minute (0-59)
     random_hour = random.randint(0, 23)
     random_minute = random.randint(0, 59)
@@ -109,6 +161,53 @@ def update_cron_with_random_time():
     os.remove(cron_file)
 
     print(f"Cron job updated to run at {random_hour}:{random_minute} tomorrow.")
+=======
+    """Schedules the script using crontab on Linux/macOS or Task Scheduler on Windows."""
+
+    random_hour = random.randint(0, 23)
+    random_minute = random.randint(0, 59)
+
+    if sys.platform.startswith("linux") or sys.platform == "darwin":
+        # **Linux/macOS Crontab Update**
+        cron_file = os.path.join(script_dir, "current_cron.txt")
+
+        new_cron_command = f"{random_minute} {random_hour} * * * cd {script_dir} && python3 {os.path.join(script_dir, 'update_number.py')}\n"
+
+        os.system(f"crontab -l > {cron_file} 2>/dev/null || true")
+
+        with open(cron_file, "r") as file:
+            lines = file.readlines()
+
+        with open(cron_file, "w") as file:
+            for line in lines:
+                if "update_number.py" not in line:
+                    file.write(line)
+            file.write(new_cron_command)
+
+        os.system(f"crontab {cron_file}")
+        os.remove(cron_file)
+
+        print(f"[Linux/macOS] Cron job updated to run at {random_hour}:{random_minute}.")
+
+    elif sys.platform == "win32":
+        # **Windows Task Scheduler Update**
+        task_name = "AutoGitCommit"
+        script_path = os.path.abspath(__file__)
+
+        print(f"[Windows] Scheduling task at {random_hour:02}:{random_minute:02}")
+
+        # Remove the old scheduled task if it exists
+        subprocess.run(f'schtasks /delete /tn "{task_name}" /f', shell=True)
+
+        # Create a new scheduled task
+        command = f'schtasks /create /tn "{task_name}" /tr "python {script_path}" /sc daily /st {random_hour:02}:{random_minute:02}"'
+        subprocess.run(command, shell=True)
+
+        print(f"[Windows] Task scheduled to run daily at {random_hour:02}:{random_minute:02}.")
+    else:
+        print("Unsupported OS: Cannot schedule tasks.")
+
+>>>>>>> f052deb9a3b640c90e2bb1e657dd85a65d936eb6
 
 
 def main():
