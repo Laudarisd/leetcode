@@ -23,6 +23,9 @@ graph TD
   I --> J[Graphs]
 ````
 
+
+<pre><code>## 🧭 DSA Roadmap (via Mermaid.js) ```mermaid graph TD A[Arrays & Strings] --> B[Hash Maps] B --> C[Two Pointers] C --> D[Stacks & Queues] D --> E[Binary Search] E --> F[Linked Lists] F --> G[Trees (DFS/BFS)] G --> H[Recursion & Backtracking] H --> I[Dynamic Programming (DP)] I --> J[Graphs] ``` </code></pre>
+
 ---
 
 ## ✅ Topic Tracker
