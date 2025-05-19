@@ -1,16 +1,4 @@
-Perfect. Below is your **complete `README.md`** with everything:
-
-* ✅ Dynamic badges
-* ✅ Mermaid.js roadmap
-* ✅ GitHub stats
-* ✅ Auto-update setup via GitHub Actions *(additional instruction below)*
-
----
-
-## ✅ Complete `README.md` for LeetCode DSA Tracker
-
-````markdown
-# 🧠 LeetCode DSA Practice Roadmap
+# LeetCode DSA Practice Roadmap
 
 ![Problems Solved](https://img.shields.io/badge/Problems%20Solved-Auto--Updated-blue?style=for-the-badge)
 ![Last Updated](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/.github/badges/last_updated.json)
