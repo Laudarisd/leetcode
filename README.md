@@ -1,17 +1,28 @@
+Thanks! I've updated the README structure and fixed the Mermaid.js syntax error for your LeetCode repo. Here's the **complete and corrected** version of your `README.md`, including:
+
+* Correct Mermaid.js diagram
+* Auto-updating problem count badge setup
+* GitHub stats
+* Dynamic badge generation
+* Proper placeholder replacement for your GitHub username and repo
+
+---
+
+````markdown
 # LeetCode DSA Practice Roadmap
 
-![Problems Solved](https://img.shields.io/badge/Problems%20Solved-Auto--Updated-blue?style=for-the-badge)
-![Last Updated](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/main/.github/badges/last_updated.json)
-![GitHub Workflow](https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/actions/workflows/update-badge.yml/badge.svg)
+![Problems Solved](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Laudarisd/leetcode/main/.github/badges/problems_solved.json)
+![Last Updated](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Laudarisd/leetcode/main/.github/badges/last_updated.json)
+![GitHub Workflow](https://github.com/Laudarisd/leetcode/actions/workflows/update-badge.yml/badge.svg)
 
-This repository tracks my journey through LeetCode's Data Structures & Algorithms challenges using a structured roadmap and automated progress tracking.
+This repository tracks my journey through LeetCode's **Data Structures & Algorithms (DSA)** challenges using a structured roadmap and automated progress tracking.
 
 ---
 
 ## 🧭 DSA Roadmap (via Mermaid.js)
 
 ```mermaid
-graph TD;
+graph TD
   A[Arrays & Strings] --> B[Hash Maps]
   B --> C[Two Pointers]
   C --> D[Stacks & Queues]
@@ -45,12 +56,17 @@ graph TD;
 ## 📂 Folder Structure
 
 ```
-📁 LeetCode-DSA/
+📁 leetcode/
 ├── Arrays-Strings/
 ├── HashMaps/
 ├── TwoPointers/
 ├── Stacks-Queues/
-├── ...
+├── BinarySearch/
+├── LinkedLists/
+├── Trees/
+├── Recursion/
+├── DP/
+├── Graphs/
 └── README.md
 ```
 
@@ -58,30 +74,32 @@ graph TD;
 
 ## 📘 Notes & Resources
 
-* Each solution includes:
+Each solution includes:
 
-  * ✅ Problem link
-  * ✅ Code
-  * ✅ Explanation & Time/Space complexity
-* 🔗 References:
+* 🔗 Problem link
+* 💻 Code
+* 🧠 Explanation
+* ⏱️ Time/Space complexity
 
-  * [LeetCode](https://leetcode.com)
-  * [NeetCode Roadmap](https://neetcode.io/)
-  * [GeeksForGeeks](https://www.geeksforgeeks.org/)
-  * [Visualgo](https://visualgo.net/en)
+Helpful Resources:
+
+* [LeetCode](https://leetcode.com/u/dbBO1xrtst/)
+* [NeetCode Roadmap](https://neetcode.io/)
+* [GeeksForGeeks](https://www.geeksforgeeks.org/)
+* [Visualgo](https://visualgo.net/en)
 
 ---
 
 ## 📈 GitHub Stats
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=YOUR_GITHUB_USERNAME\&show_icons=true\&theme=radical)
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_GITHUB_USERNAME\&layout=compact\&theme=radical)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Laudarisd\&show_icons=true\&theme=radical)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=Laudarisd\&layout=compact\&theme=radical)
 
 ---
 
 ## ⚙️ GitHub Action: Auto Update Progress
 
-Create `.github/workflows/update-badge.yml`:
+Create the workflow file at `.github/workflows/update-badge.yml`:
 
 ```yaml
 name: Update Problem Count Badge
@@ -102,6 +120,7 @@ jobs:
       - name: Count .py files (1 problem = 1 solution)
         run: |
           count=$(find . -name "*.py" | wc -l)
+          mkdir -p .github/badges
           echo "{\"label\":\"Problems Solved\",\"message\":\"$count\",\"color\":\"blue\"}" > .github/badges/problems_solved.json
           echo "{\"label\":\"Last Updated\",\"message\":\"$(date +'%Y-%m-%d')\",\"color\":\"green\"}" > .github/badges/last_updated.json
 
@@ -114,31 +133,27 @@ jobs:
           git push
 ```
 
+Also, create dummy JSON badge files:
+
+```bash
+mkdir -p .github/badges
+echo '{"label":"Problems Solved","message":"0","color":"blue"}' > .github/badges/problems_solved.json
+echo '{"label":"Last Updated","message":"N/A","color":"green"}' > .github/badges/last_updated.json
+```
+
 ---
 
 ## 🏁 Goal
 
-🎯 Solve **200+ structured LeetCode problems** to master DSA and prepare for high-level technical interviews.
+🎯 Solve **200+ structured LeetCode problems** to master Data Structures & Algorithms and ace technical interviews.
 
 ---
 
 ## 🙌 Let's Connect
 
-Feel free to fork this repo, contribute your own solutions, or suggest improvements via issues or pull requests.
-Happy solving! 🚀
+If you find this helpful, feel free to fork this repo, submit PRs, or follow my journey.
+
+Happy coding! 🚀
 
 ```
 
----
-
-### ✅ Final Notes:
-
-- Replace:
-  - `YOUR_GITHUB_USERNAME` with your GitHub handle
-  - `YOUR_REPO_NAME` with your repository name
-- Create `.github/badges/` directory and add dummy `.json` files (`problems_solved.json`, `last_updated.json`) to avoid initial build errors.
-- Push the `update-badge.yml` workflow file to `main` branch.
-- Install the [Mermaid Markdown Plugin](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid) if using VS Code.
-
-Let me know if you want this turned into a template repo!
-```
