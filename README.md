@@ -1,14 +1,3 @@
-Thanks! I've updated the README structure and fixed the Mermaid.js syntax error for your LeetCode repo. Here's the **complete and corrected** version of your `README.md`, including:
-
-* Correct Mermaid.js diagram
-* Auto-updating problem count badge setup
-* GitHub stats
-* Dynamic badge generation
-* Proper placeholder replacement for your GitHub username and repo
-
----
-
-````markdown
 # LeetCode DSA Practice Roadmap
 
 ![Problems Solved](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/Laudarisd/leetcode/main/.github/badges/problems_solved.json)
