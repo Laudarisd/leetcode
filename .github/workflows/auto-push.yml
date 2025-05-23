@@ -2,7 +2,7 @@ name: Auto Git Push Every 5 Minutes
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # every 5 minutes to reduce race conditions
+    - cron: '*/5 * * * *'  # every 5 minutes
   workflow_dispatch:       # allow manual trigger for testing
 
 jobs:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     concurrency:
       group: auto-push
-      cancel-in-progress: true  # prevent multiple runs at once
+      cancel-in-progress: true  # ensure only one run at a time
 
     steps:
     - name: Checkout repository
@@ -23,9 +23,17 @@ jobs:
         git config --global user.name "Sudip Laudari"
         git config --global user.email "sudiplaudari@gmail.com"
 
-    - name: Pull latest changes
+    - name: Pull latest changes with conflict resolution
       run: |
-        git pull --rebase origin main || (echo "Rebase failed, aborting"; git rebase --abort; exit 1)
+        git pull --rebase origin main || (
+          echo "Rebase conflict detected, resolving by keeping latest .autopush-log.txt"
+          git rebase --abort
+          git fetch origin main
+          git reset --hard origin/main
+          echo "Last update: $(date -u)" > .autopush-log.txt
+          git add .autopush-log.txt
+          git commit -m "🔄 Resolved conflict and updated: $(date -u)"
+        )
 
     - name: Update timestamp in .autopush-log.txt
       run: |
