@@ -1,9 +1,9 @@
-name: Auto Git Push Every 5 Minutes
+name: Auto Git Push Every 1 Minute
 
 on:
   schedule:
-    - cron: '*/5 * * * *'  # every 5 minutes
-  workflow_dispatch:       # manual trigger for testing
+    - cron: '*/1 * * * *'  # every 1 minute
+  workflow_dispatch:       # allow manual trigger for testing
 
 jobs:
   auto-push:
@@ -15,15 +15,16 @@ jobs:
 
     - name: Configure Git
       run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "Sudip Laudari"
+        git config --global user.email "sudiplaudari@gmail.com"
 
     - name: Make dummy change (timestamp)
       run: |
-        echo "Last push: $(date -u)" > .autopush-log.txt
+        echo "Last update: $(date -u)" > .autopush-log.txt
 
     - name: Commit and push changes
       run: |
         git add .autopush-log.txt
-        git commit -m "Auto push at $(date -u)" || echo "No changes to commit"
+        git commit -m "Testing CI/CD process" || echo "No changes to commit"
+        git pull --rebase origin main
         git push origin HEAD
