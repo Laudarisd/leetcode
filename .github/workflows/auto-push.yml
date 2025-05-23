@@ -3,7 +3,7 @@ name: Auto Git Push Every 1 Minute
 on:
   schedule:
     - cron: '*/1 * * * *'  # every 1 minute
-  workflow_dispatch:       # allow manual trigger for testing
+  workflow_dispatch:
 
 jobs:
   auto-push:
@@ -13,14 +13,18 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
-        fetch-depth: 0  # ensures full history for pull --rebase
+        fetch-depth: 0  # Ensure full history
 
-    - name: Configure Git
+    - name: Set up Git config
       run: |
         git config --global user.name "Sudip Laudari"
         git config --global user.email "sudiplaudari@gmail.com"
 
-    - name: Make dummy change (timestamp)
+    - name: Set working branch
+      run: |
+        git checkout main
+
+    - name: Make dummy change
       run: |
         echo "Last update: $(date -u)" > .autopush-log.txt
 
@@ -28,5 +32,5 @@ jobs:
       run: |
         git add .autopush-log.txt
         git commit -m "🔄 Scheduled auto update: $(date -u)" || echo "No changes to commit"
-        git pull --rebase origin main
-        git push origin HEAD
+        git pull origin main --rebase
+        git push origin main
