@@ -1,36 +1,37 @@
-name: Auto Git Push Every 1 Minute
+name: Auto Git Push Every 5 Minutes
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  # every 1 minute
-  workflow_dispatch:
+    - cron: '*/5 * * * *'  # every 5 minutes to reduce race conditions
+  workflow_dispatch:       # allow manual trigger for testing
 
 jobs:
   auto-push:
     runs-on: ubuntu-latest
+    concurrency:
+      group: auto-push
+      cancel-in-progress: true  # prevent multiple runs at once
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
-        fetch-depth: 0  # Ensure full history
+        fetch-depth: 0  # ensures full history for pull --rebase
 
-    - name: Set up Git config
+    - name: Configure Git
       run: |
         git config --global user.name "Sudip Laudari"
         git config --global user.email "sudiplaudari@gmail.com"
 
-    - name: Set working branch
+    - name: Pull latest changes
       run: |
-        git checkout main
+        git pull --rebase origin main || (echo "Rebase failed, aborting"; git rebase --abort; exit 1)
 
-    - name: Make dummy change
+    - name: Update timestamp in .autopush-log.txt
       run: |
         echo "Last update: $(date -u)" > .autopush-log.txt
 
     - name: Commit and push changes
       run: |
         git add .autopush-log.txt
-        git commit -m "🔄 Scheduled auto update: $(date -u)" || echo "No changes to commit"
-        git pull origin main --rebase
-        git push origin main
+        git diff --cached --quiet && echo "No changes to commit" || (git commit -m "🔄 Scheduled auto update: $(date -u)" && git push origin main)
