@@ -1,16 +1,26 @@
-LeetCode DSA Practice Roadmap
+# 📘 LeetCode DSA Practice Roadmap
 
-Welcome to my LeetCode Data Structures & Algorithms (DSA) journey! This repository tracks my progress through structured challenges, with automated badges and a clear roadmap to master DSA for technical interviews.
+Welcome to my LeetCode **Data Structures & Algorithms (DSA)** journey!  
+This repository tracks my progress through a structured learning path with automation, clean solutions, and visual documentation — all aimed at mastering DSA for technical interviews.
 
-🚀 Overview
+---
 
-Goal: Solve 200+ LeetCode problems to build a strong DSA foundation.
-Approach: Follow a curated roadmap, write clean solutions, and document explanations.
-Tools: Python, GitHub Actions for automation, Mermaid.js for visualizations.
+## 🚀 Overview
 
+- **🎯 Goal**: Solve 200+ LeetCode problems to build a strong DSA foundation.
+- **🧠 Approach**: Follow a curated roadmap, write clean Python solutions, and document explanations.
+- **⚙️ Tools**: Python, GitHub Actions (automation), and Mermaid.js (visualization).
 
-🧭 DSA Roadmap
-Visualize my learning path:
+---
+
+## 🧭 DSA Roadmap (Visual)
+
+> ℹ️ GitHub doesn't render Mermaid directly — use [Mermaid Live Editor](https://mermaid.live/edit) to view this chart.
+
+<details>
+<summary>🗺️ Click to view the visual roadmap</summary>
+
+```mermaid
 graph TD
   A[Arrays & Strings] --> B[Hash Maps]
   B --> C[Two Pointers]
@@ -21,72 +31,34 @@ graph TD
   G --> H[Recursion & Backtracking]
   H --> I[Dynamic Programming - DP]
   I --> J[Graphs]
+````
 
+</details>
 
-✅ Topic Progress
-Track my progress through each DSA topic:
+---
 
+## ✅ Topic Progress
 
+| Topic                    | Status         | Notes                               |
+| ------------------------ | -------------- | ----------------------------------- |
+| Arrays & Strings         | 🟩 In Progress | Sliding window, string manipulation |
+| Hash Maps                | ⬜ Pending      | Frequency maps, fast lookups        |
+| Two Pointers             | ⬜ Pending      | Opposite ends, sorted arrays        |
+| Stacks & Queues          | ⬜ Pending      | Monotonic stacks, BFS logic         |
+| Binary Search            | ⬜ Pending      | Search space optimization           |
+| Linked Lists             | ⬜ Pending      | Slow/fast pointers, reversals       |
+| Trees - DFS/BFS          | ⬜ Pending      | Traversals, recursion               |
+| Recursion & Backtracking | ⬜ Pending      | Subsets, permutations               |
+| Dynamic Programming (DP) | ⬜ Pending      | Memoization, tabulation             |
+| Graphs                   | ⬜ Pending      | DFS, BFS, shortest paths            |
 
-Topic
-Status
-Notes
+---
 
+## 📂 Repository Structure
 
-
-Arrays & Strings
-✅ In Progress
-Sliding window, string manipulation
-
-
-Hash Maps
-⬜ Pending
-Frequency maps, fast lookups
-
-
-Two Pointers
-⬜ Pending
-Opposite ends, sorted arrays
-
-
-Stacks & Queues
-⬜ Pending
-Monotonic stacks, BFS logic
-
-
-Binary Search
-⬜ Pending
-Search space optimization
-
-
-Linked Lists
-⬜ Pending
-Slow/fast pointers, reversals
-
-
-Trees - DFS/BFS
-⬜ Pending
-Traversals, recursion
-
-
-Recursion & Backtracking
-⬜ Pending
-Subsets, permutations
-
-
-Dynamic Programming - DP
-⬜ Pending
-Memoization, tabulation
-
-
-Graphs
-⬜ Pending
-DFS, BFS, shortest paths
-
-
-
-📂 Repository Structure
 Organized by topic for easy navigation:
+
+```
 📁 leetcode/
 ├── 📁 Arrays-Strings/
 ├── 📁 HashMaps/
@@ -99,30 +71,36 @@ Organized by topic for easy navigation:
 ├── 📁 DP/
 ├── 📁 Graphs/
 └── 📄 README.md
+```
 
 Each folder contains:
 
-🔗 LeetCode problem links
-💻 Solution code (Python)
-🧠 Explanations
-⏱️ Time/Space complexity analysis
+* 🔗 LeetCode problem links
+* 💻 Python solutions
+* 🧠 Explanations
+* ⏱️ Time/Space complexity analysis
 
+---
 
-📚 Resources
-Key resources I use:
+## 📚 Resources
 
-LeetCode Profile
-NeetCode Roadmap
-GeeksForGeeks
-Visualgo
+Here are some great resources I rely on:
 
+* [📘 LeetCode Profile](https://leetcode.com/)
+* [📺 NeetCode DSA Roadmap](https://neetcode.io/)
+* [📙 GeeksForGeeks](https://www.geeksforgeeks.org/)
+* [🧮 Visualgo](https://visualgo.net/en)
 
-📈 GitHub Stats
+---
 
+## 📈 GitHub Stats & Automation
 
-⚙️ Automation: GitHub Actions
-A GitHub Action updates the problem count and last-updated badges automatically:
-.github/workflows/update-badge.yml:
+This repo uses **GitHub Actions** to auto-update problem and last-update badges every day.
+
+### GitHub Workflow
+
+```yaml
+# .github/workflows/update-badge.yml
 name: Update Problem Count Badge
 
 on:
@@ -150,15 +128,26 @@ jobs:
           git add .github/badges/*.json
           git commit -m "🔄 Auto-update badges"
           git push
+```
 
-Initialize badges:
+### Initialize badges manually (one-time):
+
+```bash
 mkdir -p .github/badges
 echo '{"label":"Problems Solved","message":"0","color":"blue"}' > .github/badges/problems_solved.json
 echo '{"label":"Last Updated","message":"N/A","color":"green"}' > .github/badges/last_updated.json
+```
 
+---
 
+## 🙌 Let's Connect
 
+Feel free to:
 
-🙌 Let's Connect
-Fork this repo, submit PRs, or follow my journey! Connect with me on LeetCode or GitHub.
+* ⭐ Star this repo
+* 🛠️ Fork and contribute
+* 💬 Connect on [GitHub](https://github.com/Laudarisd) or [LeetCode](https://leetcode.com/)
+
 Happy coding! 🚀
+
+
