@@ -1,0 +1,29 @@
+name: Auto Git Push Every 5 Minutes
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # every 5 minutes
+  workflow_dispatch:       # manual trigger for testing
+
+jobs:
+  auto-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Configure Git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Make dummy change (timestamp)
+      run: |
+        echo "Last push: $(date -u)" > .autopush-log.txt
+
+    - name: Commit and push changes
+      run: |
+        git add .autopush-log.txt
+        git commit -m "Auto push at $(date -u)" || echo "No changes to commit"
+        git push origin HEAD
