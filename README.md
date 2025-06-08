@@ -1,142 +1,51 @@
-# 📘 LeetCode DSA Practice Roadmap
+# 📘 LeetCode Problem Solving Repository
 
-Welcome to my LeetCode **Data Structures & Algorithms (DSA)** journey!  
-This repository tracks my progress through a structured learning path with automation, clean solutions, and visual documentation — all aimed at mastering DSA for technical interviews.
+🎯 Welcome to my LeetCode Problem Solving repository!This repository is dedicated to solving LeetCode problems with well-documented, efficient solutions, focusing on clarity and best practices to help others learn and excel in coding interviews.
 
 ---
-
 ## 🚀 Overview
 
-- **🎯 Goal**: Solve 200+ LeetCode problems to build a strong DSA foundation.
-- **🧠 Approach**: Follow a curated roadmap, write clean Python solutions, and document explanations.
-- **⚙️ Tools**: Python, GitHub Actions (automation), and Mermaid.js (visualization).
+🎯 Goal: Solve a wide range of LeetCode problems across various topics and difficulty levels.
+🧠 Approach: Provide clean, optimized solutions (primarily in Python) with detailed explanations and time/space complexity analysis.
+⚙️ Tools: Python, GitHub for version control, and Markdown for clear problem documentation.
 
 ---
 
-## 🧭 DSA Roadmap (Visual)
+## 🧭 LeetCode Problem Solving Roadmap (Visual)
 
-> ℹ️ GitHub doesn't render Mermaid directly — use [Mermaid Live Editor](https://mermaid.live/edit) to view this chart.
+![LeetCode Roadmap](./resources/flow_chart.png)
 
-<details>
-<summary>🗺️ Click to view the visual roadmap</summary>
-
-```mermaid
-graph TD
-  A[Arrays & Strings] --> B[Hash Maps]
-  B --> C[Two Pointers]
-  C --> D[Stacks & Queues]
-  D --> E[Binary Search]
-  E --> F[Linked Lists]
-  F --> G[Trees - DFS/BFS]
-  G --> H[Recursion & Backtracking]
-  H --> I[Dynamic Programming - DP]
-  I --> J[Graphs]
-````
-
-</details>
 
 ---
 
-## ✅ Topic Progress
+## 🧭 LeetCode Problem Solving Topics
 
-| Topic                    | Status         | Notes                               |
-| ------------------------ | -------------- | ----------------------------------- |
-| Arrays & Strings         | 🟩 In Progress | Sliding window, string manipulation |
-| Hash Maps                | ⬜ Pending      | Frequency maps, fast lookups        |
-| Two Pointers             | ⬜ Pending      | Opposite ends, sorted arrays        |
-| Stacks & Queues          | ⬜ Pending      | Monotonic stacks, BFS logic         |
-| Binary Search            | ⬜ Pending      | Search space optimization           |
-| Linked Lists             | ⬜ Pending      | Slow/fast pointers, reversals       |
-| Trees - DFS/BFS          | ⬜ Pending      | Traversals, recursion               |
-| Recursion & Backtracking | ⬜ Pending      | Subsets, permutations               |
-| Dynamic Programming (DP) | ⬜ Pending      | Memoization, tabulation             |
-| Graphs                   | ⬜ Pending      | DFS, BFS, shortest paths            |
-
----
-
-## 📂 Repository Structure
-
-Organized by topic for easy navigation:
-
-```
-📁 leetcode/
-├── 📁 Arrays-Strings/
-├── 📁 HashMaps/
-├── 📁 TwoPointers/
-├── 📁 Stacks-Queues/
-├── 📁 BinarySearch/
-├── 📁 LinkedLists/
-├── 📁 Trees/
-├── 📁 Recursion/
-├── 📁 DP/
-├── 📁 Graphs/
-└── 📄 README.md
-```
-
-Each folder contains:
-
-* 🔗 LeetCode problem links
-* 💻 Python solutions
-* 🧠 Explanations
-* ⏱️ Time/Space complexity analysis
-
----
-
-## 📚 Resources
-
-Here are some great resources I rely on:
-
-* [📘 LeetCode Profile](https://leetcode.com/)
-* [📺 NeetCode DSA Roadmap](https://neetcode.io/)
-* [📙 GeeksForGeeks](https://www.geeksforgeeks.org/)
-* [🧮 Visualgo](https://visualgo.net/en)
+| Topics                   | Details                                                                 |
+|--------------------------|-------------------------------------------------------------------------|
+| Arrays & Hashing         | Two Pointers, Stack, Binary Search, Sliding Window, Linked List         |
+| Two Pointers             | Binary Search, Sliding Window                                           |
+| Stack                    | Linked List                                                             |
+| Binary Search            | Trees                                                                   |
+| Sliding Window           | Trees                                                                   |
+| Linked List              | Trees                                                                   |
+| Trees                    | Tries, Heap / Priority Queue, Backtracking                              |
+| Tries                    |                                                                         |
+| Heap / Priority Queue    | Intervals, Greedy, Advanced Graphs                                      |
+| Intervals                |                                                                         |
+| Greedy                   |                                                                         |
+| Advanced Graphs          |                                                                         |
+| Backtracking             | Graphs, 1-D DP                                                          |
+| Graphs                   | 2-D DP, Math & Geometry                                                 |
+| 1-D DP                   | 2-D DP, Bit Manipulation                                                |
+| 2-D DP                   | Math & Geometry                                                         |
+| Bit Manipulation         |                                                                         |
+| Math & Geometry          |                                                                         |
 
 ---
 
 ## 📈 GitHub Stats & Automation
 
 This repo uses **GitHub Actions** to auto-update problem and last-update badges every day.
-
-### GitHub Workflow
-
-```yaml
-# .github/workflows/update-badge.yml
-name: Update Problem Count Badge
-
-on:
-  push:
-    paths:
-      - '**.py'
-  schedule:
-    - cron: '0 0 * * *'  # Daily at midnight UTC
-
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Count .py files
-        run: |
-          count=$(find . -name "*.py" | wc -l)
-          mkdir -p .github/badges
-          echo "{\"label\":\"Problems Solved\",\"message\":\"$count\",\"color\":\"blue\"}" > .github/badges/problems_solved.json
-          echo "{\"label\":\"Last Updated\",\"message\":\"$(date +'%Y-%m-%d')\",\"color\":\"green\"}" > .github/badges/last_updated.json
-      - name: Commit & Push
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'actions@github.com'
-          git add .github/badges/*.json
-          git commit -m "🔄 Auto-update badges"
-          git push
-```
-
-### Initialize badges manually (one-time):
-
-```bash
-mkdir -p .github/badges
-echo '{"label":"Problems Solved","message":"0","color":"blue"}' > .github/badges/problems_solved.json
-echo '{"label":"Last Updated","message":"N/A","color":"green"}' > .github/badges/last_updated.json
-```
 
 ---
 
