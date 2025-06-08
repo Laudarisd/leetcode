@@ -57,7 +57,7 @@ Feel free to:
 
 * ⭐ Star this repo
 * 🛠️ Fork and contribute
-* 💬 Connect on [GitHub](https://github.com/Laudarisd) or [LeetCode](https://leetcode.com/)
+* 💬 Connect on [GitHub](https://github.com/Laudarisd) or [LeetCode](https://leetcode.com/u/dbBO1xrtst/)
 
 Happy coding! 🚀
 
