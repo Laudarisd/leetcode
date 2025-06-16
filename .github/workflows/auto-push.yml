@@ -1,4 +1,4 @@
-name: Auto Git Push Every 5 Minutes
+name: Auto Git Push Every 5 Hours
 
 on:
   schedule:
