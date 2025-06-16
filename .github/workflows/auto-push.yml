@@ -3,7 +3,8 @@ name: Auto Git Push Every 5 Minutes
 on:
   schedule:
     # - cron: '*/5 * * * *'  # every 5 minutes
-    - cron: '0 * * * *'  # every 1 hour
+    #- cron: '0 * * * *'  # every 1 hour
+    - cron: '0 */5 * * *'  # every 5th hour, at minute 0
   workflow_dispatch:       # allow manual trigger for testing
 
 jobs:
