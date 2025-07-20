@@ -55,7 +55,12 @@ print(arr[2]) # Output:3
 - Use two indices to traverse/compare elements
 - Example: Find if an array has two numbers that sum to target
 
-**Check more examples in [two_pointers](../two_pointers/)
+**Check more examples in [two_pointers](../two_pointers/)**
 
+2. Sliding Window
+- Use a window(subarray) to process a range of elements.
+- Example: Find maximum sum of k consecutive elements.
+
+**Check more examples in [sliding_window](../sliding_window/)
 
 
