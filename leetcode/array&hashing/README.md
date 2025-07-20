@@ -64,3 +64,71 @@ print(arr[2]) # Output:3
 **Check more examples in [sliding_window](../sliding_window/)
 
 
+3. Prefix Sum
+- Precompute sums to answer range queries efficiently.
+- Example: Find sum of elements between i and j in o(1) time.
+
+---
+---
+#### 1.4 Example Problems
+
+```python
+arr = [2, 5, 1, 8, 3]
+max_val = max(arr)
+print(max_val)
+
+#Output: 8
+```
+
+Example 2: Reverse Array
+
+```python
+Copy
+Edit
+arr = [1, 2, 3, 4]
+arr.reverse()
+print(arr)  # Output: [4, 3, 2, 1]
+Example 3: Two Sum (Using Two Pointers)
+python
+Copy
+Edit
+def two_sum(arr, target):
+    arr.sort()  # two-pointer requires sorted
+    left, right = 0, len(arr)-1
+    while left < right:
+        s = arr[left] + arr[right]
+        if s == target:
+            return True
+        elif s < target:
+            left += 1
+        else:
+            right -= 1
+    return False
+
+print(two_sum([2, 7, 11, 15], 9))  # Output: True
+```
+
+---
+---
+## 2. Hashing (Hash Table)
+2.1 What is Hashing?
+Hashing is a technique to map data (keys) to a fixed-size value (hash) for fast lookup, insert, and delete.
+
+Python: dict (hash map), set (hash set)
+
+Average time: O(1) for insert, lookup, and delete
+
+
+2.2 HashMap & HashSet in Python
+```python
+Copy
+Edit
+# HashMap
+d = {'apple': 2, 'banana': 5}
+d['orange'] = 3  # Insert
+
+# HashSet
+s = set()
+s.add(1)
+s.add(2)
+```
