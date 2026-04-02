@@ -1,47 +1,74 @@
-name: Auto Git Push Every 5 Hours
+name: Auto Git Push Every 2-3 Days (Irregular)
 
 on:
   schedule:
-    # - cron: '*/5 * * * *'  # every 5 minutes
-    #- cron: '0 * * * *'  # every 1 hour
-    - cron: '0 */5 * * *'  # every 5th hour, at minute 0
-  workflow_dispatch:       # allow manual trigger for testing
+    - cron: '0 3 */2 * *'  # every 2 days at 03:00 UTC
+  workflow_dispatch:
 
 jobs:
   auto-push:
     runs-on: ubuntu-latest
     concurrency:
       group: auto-push
-      cancel-in-progress: true  # ensure only one run at a time
+      cancel-in-progress: true
 
     steps:
+    - name: Random skip (to simulate 3-day gaps)
+      id: random_check
+      run: |
+        # 50% chance to skip → creates 2 or 4 day gap → avg ≈ 3 days
+        R=$((RANDOM % 2))
+        echo "Random value: $R"
+        if [ "$R" -eq 0 ]; then
+          echo "skip=true" >> $GITHUB_OUTPUT
+        else
+          echo "skip=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Random delay (more natural timing)
+      if: steps.random_check.outputs.skip == 'false'
+      run: |
+        DELAY=$((RANDOM % 21600))  # up to 6 hours delay
+        echo "Sleeping for $DELAY seconds"
+        sleep $DELAY
+
     - name: Checkout repository
+      if: steps.random_check.outputs.skip == 'false'
       uses: actions/checkout@v3
       with:
-        fetch-depth: 0  # ensures full history for pull --rebase
+        fetch-depth: 0
 
     - name: Configure Git
+      if: steps.random_check.outputs.skip == 'false'
       run: |
         git config --global user.name "Sudip Laudari"
         git config --global user.email "sudiplaudari@gmail.com"
 
     - name: Pull latest changes with conflict resolution
+      if: steps.random_check.outputs.skip == 'false'
       run: |
         git pull --rebase origin main || (
-          echo "Rebase conflict detected, resolving by keeping latest .autopush-log.txt"
+          echo "Rebase conflict detected, resolving..."
           git rebase --abort
           git fetch origin main
           git reset --hard origin/main
           echo "Last update: $(date -u)" > .autopush-log.txt
           git add .autopush-log.txt
-          git commit -m "🔄 Resolved conflict and updated: $(date -u)"
+          git commit -m "🔄 Conflict resolved: $(date -u)"
         )
 
-    - name: Update timestamp in .autopush-log.txt
+    - name: Update timestamp
+      if: steps.random_check.outputs.skip == 'false'
       run: |
         echo "Last update: $(date -u)" > .autopush-log.txt
 
-    - name: Commit and push changes
+    - name: Commit and push
+      if: steps.random_check.outputs.skip == 'false'
       run: |
         git add .autopush-log.txt
-        git diff --cached --quiet && echo "No changes to commit" || (git commit -m "🔄 Scheduled auto update: $(date -u)" && git push origin main)
+        git diff --cached --quiet && echo "No changes" || \
+        (git commit -m "🔄 Auto update: $(date -u)" && git push origin main)
+
+    - name: Skip message
+      if: steps.random_check.outputs.skip == 'true'
+      run: echo "Skipped this run to create irregular schedule."
